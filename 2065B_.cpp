@@ -13,7 +13,7 @@ void josben() {
         }
     }
  
-    cout << str.size() << '\n';
+    cout << str.size()<< '\n';
 }
  
 int main() {
