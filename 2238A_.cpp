@@ -243,45 +243,59 @@ struct SegTree {
 void josben() {
  
     // Write your solution here
-    ll n, c;
-    cin >> n >> c;
+    ll n,c;
+    cin>>n>>c;
     vll a(n);
     read(a);
-    vll b(n); 
-    read(b); 
-    ll s1 = accumulate(all(a), 0ll);
-    ll s2 = accumulate(all(b), 0ll);
-    ll d=s1-s2;
-    
-    bool vw = true;
-    for (int i = 0; i < n; i++) {
-        if (a[i] < b[i]) {
-           vw= false;
+    vll b(n);
+    read(b);
+    ll mx1=*max_element(all(a));
+    ll mx2=*max_element(all(b));
+    if(mx2>mx1){
+        cout<<-1<<'\n';
+        return ;
+    }
+    bool find=false;
+    bool present=false;
+    ll ans=0;
+    f(i,0,n)
+    {
+        if(a[i]<b[i]){
+            find=true;
             break;
         }
-    }
-sor(a);
-sor(b); 
- 
-    bool v = true;
-    for (int i = 0; i < n; i++) {
-        if (a[i] < b[i]) {
-            v= false; 
-            break;
+        else {
+            ans+=abs(a[i]-b[i]);
         }
     }
  
-    
- if (vw) {
-        cout << d << "\n";
-    } else if (v) {
-        cout << c + d << "\n";
-    } else {
-        cout << -1 << "\n"; 
+    if(!find){
+        cout<<ans<<endl;
+        return; 
     }
-    
+    if(find){     
+        ans=0;
+        sor(a);
+        sor(b);
+        f(i,0,n){
+            if(a[i]<b[i]){
+                present=true;
+                break;
+            }
+            ans+=abs(a[i]-b[i]);
+        }
  
-}
+        
+    }
+    if(present){
+        cout<<-1<<'\n';
+       
+    }
+    else {
+        cout<<ans+c<<endl;
+    }
+       
+} 
  
 /*================= MAIN =================*/
  
